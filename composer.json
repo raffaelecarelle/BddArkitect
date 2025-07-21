@@ -1,0 +1,36 @@
+{
+    "name": "bdd-arkitect/behat-extension",
+    "description": "A Behat extension for verifying and maintaining naming conventions and file structure rules",
+    "type": "behat-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "BDD Arkitect Team"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "behat/behat": "^3.0",
+        "symfony/yaml": "^5.0|^6.0",
+        "nikic/php-parser": "^4.0",
+        "symfony/finder": "^5.0|^6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0",
+        "phpstan/phpstan": "^1.0",
+        "friendsofphp/php-cs-fixer": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "BddArkitect\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BddArkitect\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
