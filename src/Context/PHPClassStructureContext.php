@@ -20,7 +20,7 @@ final class PHPClassStructureContext implements Context
     private array $foundClasses = [];
     private string $projectRoot = '';
 
-    public function __construct(string $projectRoot = null)
+    public function __construct(?string $projectRoot = null)
     {
         $this->projectRoot = $projectRoot ?? getcwd();
     }
@@ -359,10 +359,11 @@ final class PHPClassStructureContext implements Context
             new \RecursiveDirectoryIterator($this->projectRoot)
         );
 
+        /** @var \SplFileInfo $file */
         foreach ($iterator as $file) {
             if ($file->getExtension() === 'php') {
                 $content = file_get_contents($file->getPathname());
-                $className = $this->extractClassName($content);
+                $className = $this->extractClassName(basename($file->getPathname(), '.php'));
 
                 if ($className && $this->matchesPattern($className, $pattern)) {
                     $classes[] = $className;
@@ -376,9 +377,9 @@ final class PHPClassStructureContext implements Context
     /**
      * Estrae il nome della classe da un file PHP
      */
-    private function extractClassName(string $content): ?string
+    private function extractClassName(string $basename): ?string
     {
-        if (preg_match('/class\s+([A-Za-z_][A-Za-z0-9_]*)/i', $content, $matches)) {
+        if (preg_match('/([A-Za-z_][A-Za-z0-9_]*)/i', $basename, $matches)) {
             return $matches[1];
         }
 

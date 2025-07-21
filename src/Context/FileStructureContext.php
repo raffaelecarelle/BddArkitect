@@ -20,7 +20,7 @@ final class FileStructureContext implements Context
     private array $foundFiles = [];
     private array $foundDirectories = [];
 
-    public function __construct(string $projectRoot = null)
+    public function __construct(?string $projectRoot = null)
     {
         $this->projectRoot = $projectRoot ?? getcwd();
     }

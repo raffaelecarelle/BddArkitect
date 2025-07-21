@@ -1,0 +1,7 @@
+user_test:
+  path: /user
+  controller: Tests\Functional\Fixtures\UserTest::testUserCreation
+
+product_test:
+  path: /product
+  controller: Tests\Functional\Fixtures\ProductTest::testProductCreation

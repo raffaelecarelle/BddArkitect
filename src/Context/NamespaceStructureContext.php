@@ -20,7 +20,7 @@ final class NamespaceStructureContext implements Context
     private array $composerConfig = [];
     private array $foundClasses = [];
 
-    public function __construct(string $projectRoot = null)
+    public function __construct(?string $projectRoot = null)
     {
         $this->projectRoot = $projectRoot ?? getcwd();
         $this->loadComposerConfig();
@@ -424,11 +424,11 @@ final class NamespaceStructureContext implements Context
     private function followsConvention(string $name, string $convention): bool
     {
         return match($convention) {
-            'PascalCase' => preg_match('/^[A-Z][a-zA-Z0-9]*$/', $name),
-            'camelCase' => preg_match('/^[a-z][a-zA-Z0-9]*$/', $name),
-            'snake_case' => preg_match('/^[a-z][a-z0-9_]*$/', $name),
-            'kebab-case' => preg_match('/^[a-z][a-z0-9-]*$/', $name),
-            'UPPER_CASE' => preg_match('/^[A-Z][A-Z0-9_]*$/', $name),
+            'PascalCase' => (bool) preg_match('/^[A-Z][a-zA-Z0-9]*$/', $name),
+            'camelCase' => (bool) preg_match('/^[a-z][a-zA-Z0-9]*$/', $name),
+            'snake_case' => (bool) preg_match('/^[a-z][a-z0-9_]*$/', $name),
+            'kebab-case' => (bool) preg_match('/^[a-z][a-z0-9-]*$/', $name),
+            'UPPER_CASE' => (bool) preg_match('/^[A-Z][A-Z0-9_]*$/', $name),
             default => $this->matchesPattern($name, $convention)
         };
     }

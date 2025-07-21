@@ -1,0 +1,9 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Tests\Functional\Fixtures\:
+    resource: '../src/*'
+    exclude: '../src/{Entity,Migrations,Tests}'

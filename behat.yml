@@ -2,28 +2,28 @@ default:
     suites:
         class_structure:
             paths:
-                - features/class-structure
+                - tests/Functional/fixtures/features/class-structure
             contexts:
                 - BddArkitect\Context\PHPClassStructureContext:
                       - "%paths.base%"  # Project root path
 
         file_structure:
             paths:
-                - features/file-structure
+                - tests/Functional/fixtures/features/file-structure
             contexts:
                 - BddArkitect\Context\FileStructureContext:
                       - "%paths.base%"  # Project root path
 
         namespace_structure:
             paths:
-                - features/namespace-structure
+                - tests/Functional/fixtures/features/namespace-structure
             contexts:
                 - BddArkitect\Context\NamespaceStructureContext:
                       - "%paths.base%"  # Project root path
 
         all_structure_validation:
             paths:
-                - features
+                - tests/Functional/fixtures/features
             contexts:
                 - BddArkitect\Context\PHPClassStructureContext:
                       - "%paths.base%"
