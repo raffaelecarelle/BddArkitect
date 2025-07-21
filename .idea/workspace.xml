@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f09a4b52-ef4a-4474-b301-a805b2e752da" name="Changes" comment="" />
+    <list default="true" id="f09a4b52-ef4a-4474-b301-a805b2e752da" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.php-cs-fixer.dist.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/behat.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/example-class-structure.feature" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/example-file-structure.feature" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/example-namespace-structure.feature" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phpstan-baseline.neon" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phpstan.neon" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Context/FileStructureContext.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Context/NamespaceStructureContext.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Context/PHPClassStructureContext.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,9 +61,9 @@
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="docker.algoritma.it/algoritma/workspace:oro6.0-alpine3.18" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="30BSnOAihYjQ7B9zGNFT3jSkP4O" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -59,6 +73,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpCreateRemoteSdkForm": "Docker",
     "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpInplaceEditRemoteSdkForm": "Docker",
     "git-widget-placeholder": "master",
@@ -94,6 +109,7 @@
       <option name="presentableId" value="Default" />
       <updated>1753099638544</updated>
       <workItem from="1753099639541" duration="5361000" />
+      <workItem from="1753106776312" duration="201000" />
     </task>
     <servers />
   </component>
