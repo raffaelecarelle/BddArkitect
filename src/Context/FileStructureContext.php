@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace BddArkitect\Context;
 
+use BddArkitect\Extension\ArkitectConfiguration;
 use Behat\Behat\Context\Context;
 use PHPUnit\Framework\Assert;
 use RecursiveDirectoryIterator;
@@ -16,13 +17,26 @@ use SplFileInfo;
  */
 final class FileStructureContext implements Context
 {
+    use ContextTrait;
     private string $projectRoot;
     private array $foundFiles = [];
     private array $foundDirectories = [];
+    private ?ArkitectConfiguration $configuration = null;
 
     public function __construct(?string $projectRoot = null)
     {
         $this->projectRoot = $projectRoot ?? getcwd();
+    }
+
+    /**
+     * Set the configuration for this context.
+     * This method is called by the ArkitectContextInitializer.
+     */
+    public function setConfiguration(ArkitectConfiguration $configuration): void
+    {
+        $this->configuration = $configuration;
+        // Update the project root from the configuration if available
+        $this->projectRoot = $this->configuration->getProjectRoot();
     }
 
     /**
@@ -309,9 +323,20 @@ final class FileStructureContext implements Context
 
         /** @var SplFileInfo $file */
         foreach ($iterator as $file) {
-            if ($file->isFile() && $this->matchesPattern($file->getFilename(), $pattern)) {
-                $files[] = $file->getPathname();
+            // Skip if not a file or doesn't match the pattern
+            if (!$file->isFile() || !$this->matchesPattern($file->getFilename(), $pattern)) {
+                continue;
             }
+
+            // Get the relative path from the project root
+            $relativePath = str_replace($this->projectRoot . DIRECTORY_SEPARATOR, '', $file->getPathname());
+
+            // Skip if configuration is available and the path should not be analyzed
+            if ($this->configuration !== null && !$this->configuration->shouldAnalyzePath($relativePath)) {
+                continue;
+            }
+
+            $files[] = $file->getPathname();
         }
 
         return $files;
@@ -329,9 +354,20 @@ final class FileStructureContext implements Context
 
         /** @var SplFileInfo $file */
         foreach ($iterator as $file) {
-            if ($file->isDir() && $this->matchesPattern($file->getFilename(), $pattern)) {
-                $directories[] = $file->getPathname();
+            // Skip if not a directory or doesn't match the pattern
+            if (!$file->isDir() || !$this->matchesPattern($file->getFilename(), $pattern)) {
+                continue;
             }
+
+            // Get the relative path from the project root
+            $relativePath = str_replace($this->projectRoot . DIRECTORY_SEPARATOR, '', $file->getPathname());
+
+            // Skip if configuration is available and the path should not be analyzed
+            if ($this->configuration !== null && !$this->configuration->shouldAnalyzePath($relativePath)) {
+                continue;
+            }
+
+            $directories[] = $file->getPathname();
         }
 
         return $directories;

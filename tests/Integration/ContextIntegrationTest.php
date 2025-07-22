@@ -35,12 +35,12 @@ use App\Contracts\UserRepositoryInterface;
 final class UserController
 {
     private $userRepository;
-    
+
     public function __construct(UserRepositoryInterface $userRepository)
     {
         $this->userRepository = $userRepository;
     }
-    
+
     public function index()
     {
         return $this->userRepository->findAll();
@@ -54,12 +54,12 @@ use App\Contracts\ProductRepositoryInterface;
 final class ProductController
 {
     private $productRepository;
-    
+
     public function __construct(ProductRepositoryInterface $productRepository)
     {
         $this->productRepository = $productRepository;
     }
-    
+
     public function index()
     {
         return $this->productRepository->findAll();
@@ -88,12 +88,12 @@ namespace App\Repository;
 abstract class BaseRepository
 {
     protected $entityManager;
-    
+
     public function __construct($entityManager)
     {
         $this->entityManager = $entityManager;
     }
-    
+
     public function findAll()
     {
         // Find all entities
@@ -241,7 +241,7 @@ interface UserRepositoryInterface
         $this->classContext->iAmAnalyzingTheClass('App\Contracts\ServiceInterface');
         $this->classContext->theClassShouldBeInterface();
         $this->classContext->theClassShouldNotBeFinal();
-//        $this->classContext->theClassShouldNotBeAbstract(); TODO check it fails
+        //        $this->classContext->theClassShouldNotBeAbstract(); TODO check it fails
 
         // This test passes if all the assertions above pass
         $this->addToAssertionCount(1);

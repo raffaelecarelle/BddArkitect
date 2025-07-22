@@ -16,14 +16,30 @@ use SplFileInfo;
  */
 final class NamespaceStructureContext implements Context
 {
+    use ContextTrait;
     private string $projectRoot;
     private array $composerConfig = [];
     private array $foundClasses = [];
+    private ?\BddArkitect\Extension\ArkitectConfiguration $configuration = null;
 
     public function __construct(?string $projectRoot = null)
     {
         $this->projectRoot = $projectRoot ?? getcwd();
         $this->loadComposerConfig();
+    }
+
+    /**
+     * Set the configuration for this context.
+     * This method is called by the ArkitectContextInitializer.
+     */
+    public function setConfiguration(\BddArkitect\Extension\ArkitectConfiguration $configuration): void
+    {
+        $this->configuration = $configuration;
+        // Update the project root from the configuration if available
+        if ($this->configuration !== null) {
+            $this->projectRoot = $this->configuration->getProjectRoot();
+            $this->loadComposerConfig();
+        }
     }
 
     /**
@@ -309,14 +325,25 @@ final class NamespaceStructureContext implements Context
 
         /** @var SplFileInfo $file */
         foreach ($iterator as $file) {
-            if ($file->getExtension() === 'php') {
-                $content = file_get_contents($file->getPathname());
-                $classInfo = $this->extractClassInfo($content);
+            // Skip if not a PHP file
+            if ($file->getExtension() !== 'php') {
+                continue;
+            }
 
-                if ($classInfo) {
-                    $classInfo['path'] = $file->getPathname();
-                    $classes[] = $classInfo;
-                }
+            // Get the relative path from the project root
+            $relativePath = str_replace($this->projectRoot . DIRECTORY_SEPARATOR, '', $file->getPathname());
+
+            // Skip if configuration is available and the path should not be analyzed
+            if ($this->configuration !== null && !$this->configuration->shouldAnalyzePath($relativePath)) {
+                continue;
+            }
+
+            $content = file_get_contents($file->getPathname());
+            $classInfo = $this->extractClassInfo($content);
+
+            if ($classInfo) {
+                $classInfo['path'] = $file->getPathname();
+                $classes[] = $classInfo;
             }
         }
 

@@ -1,5 +1,5 @@
 {
-    "name": "bdd-arkitect/behat-extension",
+    "name": "raffaelecarelle/bdd-arkitect",
     "description": "A Behat extension for verifying and maintaining naming conventions and file structure rules",
     "type": "behat-extension",
     "license": "MIT",

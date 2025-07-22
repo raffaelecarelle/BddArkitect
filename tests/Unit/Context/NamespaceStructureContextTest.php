@@ -79,7 +79,7 @@ class NamespaceStructureContextTest extends TestCase
     {
         // Test that the method correctly sets up PSR-4 compliance
         $this->context->iHaveAPsr4CompliantProject();
-        
+
         // This method doesn't return anything, so we're just testing that it doesn't throw an exception
         $this->addToAssertionCount(1);
     }
@@ -88,7 +88,7 @@ class NamespaceStructureContextTest extends TestCase
     {
         // Test that the method correctly sets the namespace to analyze
         $this->context->iAmAnalyzingClassesInNamespace('App\Controller');
-        
+
         // This method doesn't return anything, so we're just testing that it doesn't throw an exception
         $this->addToAssertionCount(1);
     }
@@ -97,10 +97,10 @@ class NamespaceStructureContextTest extends TestCase
     {
         // Set up the context
         $this->context->iHaveAPsr4CompliantProject();
-        
+
         // Test that the method correctly validates PSR-4 structure
         $this->context->namespaceShouldFollowPsr4Structure('App\Controller');
-        
+
         // Test that the method throws an exception for non-existent namespaces
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->namespaceShouldFollowPsr4Structure('App\NonExistent');
@@ -110,10 +110,10 @@ class NamespaceStructureContextTest extends TestCase
     {
         // Set up the context
         $this->context->iHaveAPsr4CompliantProject();
-        
+
         // Test that the method correctly validates namespace existence
         $this->context->namespaceShouldExist('App\Controller');
-        
+
         // Test that the method throws an exception for non-existent namespaces
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->namespaceShouldExist('App\NonExistent');
@@ -123,10 +123,10 @@ class NamespaceStructureContextTest extends TestCase
     {
         // Set up the context
         $this->context->iHaveAPsr4CompliantProject();
-        
+
         // Test that the method correctly validates namespace non-existence
         $this->context->namespaceShouldNotExist('App\NonExistent');
-        
+
         // Test that the method throws an exception for existing namespaces
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->namespaceShouldNotExist('App\Controller');
@@ -137,10 +137,10 @@ class NamespaceStructureContextTest extends TestCase
         // Set up the context
         $this->context->iHaveAPsr4CompliantProject();
         $this->context->iAmAnalyzingClassesInNamespace('App\Controller');
-        
+
         // Test that the method correctly validates class patterns
         $this->context->namespaceShouldContainOnlyClassesMatchingPattern('App\Controller', '*Controller');
-        
+
         // Test that the method throws an exception for patterns that don't match
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->namespaceShouldContainOnlyClassesMatchingPattern('App\Controller', '*Service');
@@ -151,10 +151,10 @@ class NamespaceStructureContextTest extends TestCase
         // Set up the context
         $this->context->iHaveAPsr4CompliantProject();
         $this->context->iAmAnalyzingClassesInNamespace('App\Controller');
-        
+
         // Test that the method correctly validates class patterns
         $this->context->namespaceShouldNotContainClassesMatchingPattern('App\Controller', '*Service');
-        
+
         // Test that the method throws an exception for patterns that match
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->namespaceShouldNotContainClassesMatchingPattern('App\Controller', '*Controller');
@@ -164,10 +164,10 @@ class NamespaceStructureContextTest extends TestCase
     {
         // Set up the context
         $this->context->iHaveAPsr4CompliantProject();
-        
+
         // Test that the method correctly validates namespace depth
         $this->context->namespaceShouldHaveMaximumDepthOfLevels('App\Controller', 2);
-        
+
         // Test that the method throws an exception for namespaces with greater depth
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->namespaceShouldHaveMaximumDepthOfLevels('App\Domain\User\Entity', 2);
@@ -177,10 +177,10 @@ class NamespaceStructureContextTest extends TestCase
     {
         // Set up the context
         $this->context->iHaveAPsr4CompliantProject();
-        
+
         // Test that the method correctly validates namespace depth
         $this->context->namespaceShouldHaveMinimumDepthOfLevels('App\Domain\User\Entity', 3);
-        
+
         // Test that the method throws an exception for namespaces with lesser depth
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->namespaceShouldHaveMinimumDepthOfLevels('App\Controller', 3);
@@ -190,10 +190,10 @@ class NamespaceStructureContextTest extends TestCase
     {
         // Set up the context
         $this->context->iHaveAPsr4CompliantProject();
-        
+
         // Test that the method correctly validates naming conventions
         $this->context->allNamespacesShouldFollowNamingConvention('PascalCase');
-        
+
         // This is a more complex test that would require modifying the virtual file system
         // to include namespaces that don't follow the convention, which is beyond the scope
         // of this simple test. In a real test, we would need to create files with namespaces

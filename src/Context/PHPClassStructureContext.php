@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace BddArkitect\Context;
 
+use BddArkitect\Assert;
+use BddArkitect\Extension\ArkitectConfiguration;
 use Behat\Behat\Context\Context;
-use PHPUnit\Framework\Assert;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;
@@ -16,13 +17,29 @@ use ReflectionMethod;
  */
 final class PHPClassStructureContext implements Context
 {
+    use ContextTrait;
+
     private ?ReflectionClass $currentClass = null;
     private array $foundClasses = [];
     private string $projectRoot = '';
+    private ?\BddArkitect\Extension\ArkitectConfiguration $configuration = null;
 
     public function __construct(?string $projectRoot = null)
     {
         $this->projectRoot = $projectRoot ?? getcwd();
+    }
+
+    /**
+     * Set the configuration for this context.
+     * This method is called by the ArkitectContextInitializer.
+     */
+    public function setConfiguration(ArkitectConfiguration $configuration): void
+    {
+        $this->configuration = $configuration;
+        // Update the project root from the configuration if available
+        $this->projectRoot = $this->configuration->getProjectRoot();
+
+        Assert::setConfiguration($configuration);
     }
 
     /**
@@ -356,18 +373,28 @@ final class PHPClassStructureContext implements Context
     {
         $classes = [];
         $iterator = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator($this->projectRoot)
+            new \RecursiveDirectoryIterator($this->projectRoot, \RecursiveDirectoryIterator::SKIP_DOTS)
         );
 
         /** @var \SplFileInfo $file */
         foreach ($iterator as $file) {
-            if ($file->getExtension() === 'php') {
-                $content = file_get_contents($file->getPathname());
-                $className = $this->extractClassName(basename($file->getPathname(), '.php'));
+            // Skip if not a PHP file
+            if ($file->getExtension() !== 'php') {
+                continue;
+            }
 
-                if ($className && $this->matchesPattern($className, $pattern)) {
-                    $classes[] = $className;
-                }
+            // Get the relative path from the project root
+            $relativePath = str_replace($this->projectRoot . DIRECTORY_SEPARATOR, '', $file->getPathname());
+
+            // Skip if configuration is available and the path should not be analyzed
+            if ($this->configuration !== null && !$this->configuration->shouldAnalyzePath($relativePath)) {
+                continue;
+            }
+
+            $className = $this->extractClassName(basename($file->getPathname(), '.php'));
+
+            if ($className && $this->matchesPattern($className, $pattern)) {
+                $classes[] = $className;
             }
         }
 

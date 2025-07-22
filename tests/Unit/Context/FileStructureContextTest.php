@@ -47,7 +47,7 @@ class FileStructureContextTest extends TestCase
     {
         // Test that the method correctly sets the project root
         $this->context->iHaveAProjectInDirectory('.');
-        
+
         // This method doesn't return anything, so we're just testing that it doesn't throw an exception
         $this->addToAssertionCount(1);
     }
@@ -56,7 +56,7 @@ class FileStructureContextTest extends TestCase
     {
         // Test that the method correctly finds files matching a pattern
         $this->context->iAmCheckingFilesMatchingPattern('*.php');
-        
+
         // This method doesn't return anything, so we're just testing that it doesn't throw an exception
         $this->addToAssertionCount(1);
     }
@@ -67,10 +67,10 @@ class FileStructureContextTest extends TestCase
 
         // Set up the context to check PHP files
         $this->context->iAmCheckingFilesMatchingPattern('*.php');
-        
+
         // Test that the method correctly validates file naming patterns
         $this->context->filesShouldFollowNamingPattern('*Controller.php');
-        
+
         // This should pass for the Controller files but fail for Service files
         $this->context->filesShouldFollowNamingPattern('*Repository.php');
     }
@@ -79,7 +79,7 @@ class FileStructureContextTest extends TestCase
     {
         // Test that the method correctly validates file existence
         $this->context->fileShouldExist('README.md');
-        
+
         // Test that the method throws an exception for non-existent files
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->fileShouldExist('non-existent-file.txt');
@@ -89,7 +89,7 @@ class FileStructureContextTest extends TestCase
     {
         // Test that the method correctly validates file non-existence
         $this->context->fileShouldNotExist('non-existent-file.txt');
-        
+
         // Test that the method throws an exception for existing files
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->fileShouldNotExist('README.md');
@@ -99,7 +99,7 @@ class FileStructureContextTest extends TestCase
     {
         // Test that the method correctly validates directory existence
         $this->context->directoryShouldExist('src');
-        
+
         // Test that the method throws an exception for non-existent directories
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->directoryShouldExist('non-existent-directory');
@@ -109,7 +109,7 @@ class FileStructureContextTest extends TestCase
     {
         // Test that the method correctly validates directory non-existence
         $this->context->directoryShouldNotExist('non-existent-directory');
-        
+
         // Test that the method throws an exception for existing directories
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->directoryShouldNotExist('src');
@@ -119,7 +119,7 @@ class FileStructureContextTest extends TestCase
     {
         // Test that the method correctly validates file content
         $this->context->fileShouldContain('.gitignore', 'vendor/');
-        
+
         // Test that the method throws an exception for files that don't contain the expected content
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->fileShouldContain('.gitignore', 'non-existent-content');
@@ -129,7 +129,7 @@ class FileStructureContextTest extends TestCase
     {
         // Test that the method correctly validates file content
         $this->context->fileShouldNotContain('.gitignore', 'non-existent-content');
-        
+
         // Test that the method throws an exception for files that contain the unexpected content
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->fileShouldNotContain('.gitignore', 'vendor/');
@@ -140,7 +140,7 @@ class FileStructureContextTest extends TestCase
         // Set up the context to check files in the src/Controller directory
         $this->context->iHaveAProjectInDirectory('src/Controller');
         $this->context->iAmCheckingFilesMatchingPattern('*');
-        
+
         // Test that the method correctly validates file extensions
         $this->context->filesShouldHaveExtension('php');
     }
@@ -159,10 +159,10 @@ class FileStructureContextTest extends TestCase
         // Set up the context to check files in the src/Controller directory
         $this->context->iHaveAProjectInDirectory('src/Controller');
         $this->context->iAmCheckingFilesMatchingPattern('*');
-        
+
         // Test that the method correctly validates file extensions
         $this->context->filesShouldNotHaveExtension('txt');
-        
+
         // Test that the method throws an exception for files with the forbidden extension
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->filesShouldNotHaveExtension('php');
