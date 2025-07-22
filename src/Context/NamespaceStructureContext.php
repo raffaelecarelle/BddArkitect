@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace BddArkitect\Context;
 
+use BddArkitect\Assert;
 use Behat\Behat\Context\Context;
-use PHPUnit\Framework\Assert;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use SplFileInfo;
@@ -36,10 +36,9 @@ final class NamespaceStructureContext implements Context
     {
         $this->configuration = $configuration;
         // Update the project root from the configuration if available
-        if ($this->configuration !== null) {
-            $this->projectRoot = $this->configuration->getProjectRoot();
-            $this->loadComposerConfig();
-        }
+        $this->projectRoot = $this->configuration->getProjectRoot();
+        $this->loadComposerConfig();
+        Assert::setConfiguration($configuration);
     }
 
     /**

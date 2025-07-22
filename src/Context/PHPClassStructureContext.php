@@ -22,7 +22,7 @@ final class PHPClassStructureContext implements Context
     private ?ReflectionClass $currentClass = null;
     private array $foundClasses = [];
     private string $projectRoot = '';
-    private ?\BddArkitect\Extension\ArkitectConfiguration $configuration = null;
+    private ?ArkitectConfiguration $configuration = null;
 
     public function __construct(?string $projectRoot = null)
     {

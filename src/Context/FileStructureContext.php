@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace BddArkitect\Context;
 
+use BddArkitect\Assert;
 use BddArkitect\Extension\ArkitectConfiguration;
 use Behat\Behat\Context\Context;
-use PHPUnit\Framework\Assert;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use SplFileInfo;
@@ -37,6 +37,7 @@ final class FileStructureContext implements Context
         $this->configuration = $configuration;
         // Update the project root from the configuration if available
         $this->projectRoot = $this->configuration->getProjectRoot();
+        Assert::setConfiguration($configuration);
     }
 
     /**
