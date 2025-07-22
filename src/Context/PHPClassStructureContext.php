@@ -17,8 +17,6 @@ use ReflectionMethod;
  */
 final class PHPClassStructureContext implements Context
 {
-    use ContextTrait;
-
     private ?ReflectionClass $currentClass = null;
     private array $foundClasses = [];
     private string $projectRoot = '';

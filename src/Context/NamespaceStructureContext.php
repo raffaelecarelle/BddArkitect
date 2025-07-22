@@ -16,7 +16,6 @@ use SplFileInfo;
  */
 final class NamespaceStructureContext implements Context
 {
-    use ContextTrait;
     private string $projectRoot;
     private array $composerConfig = [];
     private array $foundClasses = [];

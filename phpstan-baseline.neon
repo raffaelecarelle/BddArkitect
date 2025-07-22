@@ -1,0 +1,206 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method BddArkitect\\\\Context\\\\FileStructureContext\\:\\:findDirectoriesByPattern\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Context/FileStructureContext.php
+
+		-
+			message: "#^Method BddArkitect\\\\Context\\\\FileStructureContext\\:\\:findFilesByPattern\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Context/FileStructureContext.php
+
+		-
+			message: "#^Parameter \\#1 \\$array of function array_filter expects array, array\\<int, string\\>\\|false given\\.$#"
+			count: 3
+			path: src/Context/FileStructureContext.php
+
+		-
+			message: "#^Property BddArkitect\\\\Context\\\\FileStructureContext\\:\\:\\$foundDirectories type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Context/FileStructureContext.php
+
+		-
+			message: "#^Property BddArkitect\\\\Context\\\\FileStructureContext\\:\\:\\$foundFiles type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Context/FileStructureContext.php
+
+		-
+			message: "#^Property BddArkitect\\\\Context\\\\FileStructureContext\\:\\:\\$projectRoot \\(string\\) does not accept string\\|false\\.$#"
+			count: 1
+			path: src/Context/FileStructureContext.php
+
+		-
+			message: "#^Method BddArkitect\\\\Context\\\\NamespaceStructureContext\\:\\:extractClassInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Context/NamespaceStructureContext.php
+
+		-
+			message: "#^Method BddArkitect\\\\Context\\\\NamespaceStructureContext\\:\\:findClassesInNamespace\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Context/NamespaceStructureContext.php
+
+		-
+			message: "#^Method BddArkitect\\\\Context\\\\NamespaceStructureContext\\:\\:getAllClasses\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Context/NamespaceStructureContext.php
+
+		-
+			message: "#^Parameter \\#1 \\$content of method BddArkitect\\\\Context\\\\NamespaceStructureContext\\:\\:extractClassInfo\\(\\) expects string, string\\|false given\\.$#"
+			count: 1
+			path: src/Context/NamespaceStructureContext.php
+
+		-
+			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
+			count: 1
+			path: src/Context/NamespaceStructureContext.php
+
+		-
+			message: "#^Property BddArkitect\\\\Context\\\\NamespaceStructureContext\\:\\:\\$composerConfig type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Context/NamespaceStructureContext.php
+
+		-
+			message: "#^Property BddArkitect\\\\Context\\\\NamespaceStructureContext\\:\\:\\$foundClasses type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Context/NamespaceStructureContext.php
+
+		-
+			message: "#^Property BddArkitect\\\\Context\\\\NamespaceStructureContext\\:\\:\\$projectRoot \\(string\\) does not accept string\\|false\\.$#"
+			count: 1
+			path: src/Context/NamespaceStructureContext.php
+
+		-
+			message: "#^Cannot call method getName\\(\\) on ReflectionClass\\|false\\.$#"
+			count: 1
+			path: src/Context/PHPClassStructureContext.php
+
+		-
+			message: "#^Method BddArkitect\\\\Context\\\\PHPClassStructureContext\\:\\:findClassesByPattern\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Context/PHPClassStructureContext.php
+
+		-
+			message: "#^Method BddArkitect\\\\Context\\\\PHPClassStructureContext\\:\\:getClassDependencies\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Context/PHPClassStructureContext.php
+
+		-
+			message: "#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
+			count: 1
+			path: src/Context/PHPClassStructureContext.php
+
+		-
+			message: "#^Parameter \\#2 \\$subject of function preg_match_all expects string, string\\|false given\\.$#"
+			count: 1
+			path: src/Context/PHPClassStructureContext.php
+
+		-
+			message: "#^Property BddArkitect\\\\Context\\\\PHPClassStructureContext\\:\\:\\$currentClass with generic class ReflectionClass does not specify its types\\: T$#"
+			count: 1
+			path: src/Context/PHPClassStructureContext.php
+
+		-
+			message: "#^Property BddArkitect\\\\Context\\\\PHPClassStructureContext\\:\\:\\$foundClasses type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Context/PHPClassStructureContext.php
+
+		-
+			message: "#^Property BddArkitect\\\\Context\\\\PHPClassStructureContext\\:\\:\\$projectRoot \\(string\\) does not accept string\\|false\\.$#"
+			count: 1
+			path: src/Context/PHPClassStructureContext.php
+
+		-
+			message: "#^Method BddArkitect\\\\Extension\\\\ArkitectConfiguration\\:\\:__construct\\(\\) has parameter \\$excludes with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Extension/ArkitectConfiguration.php
+
+		-
+			message: "#^Method BddArkitect\\\\Extension\\\\ArkitectConfiguration\\:\\:__construct\\(\\) has parameter \\$ignoreErrors with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Extension/ArkitectConfiguration.php
+
+		-
+			message: "#^Method BddArkitect\\\\Extension\\\\ArkitectConfiguration\\:\\:__construct\\(\\) has parameter \\$paths with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Extension/ArkitectConfiguration.php
+
+		-
+			message: "#^Method BddArkitect\\\\Extension\\\\ArkitectConfiguration\\:\\:getExcludes\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Extension/ArkitectConfiguration.php
+
+		-
+			message: "#^Method BddArkitect\\\\Extension\\\\ArkitectConfiguration\\:\\:getIgnoreErrors\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Extension/ArkitectConfiguration.php
+
+		-
+			message: "#^Method BddArkitect\\\\Extension\\\\ArkitectConfiguration\\:\\:getPaths\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Extension/ArkitectConfiguration.php
+
+		-
+			message: "#^Property BddArkitect\\\\Extension\\\\ArkitectConfiguration\\:\\:\\$excludes type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Extension/ArkitectConfiguration.php
+
+		-
+			message: "#^Property BddArkitect\\\\Extension\\\\ArkitectConfiguration\\:\\:\\$ignoreErrors type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Extension/ArkitectConfiguration.php
+
+		-
+			message: "#^Property BddArkitect\\\\Extension\\\\ArkitectConfiguration\\:\\:\\$paths type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Extension/ArkitectConfiguration.php
+
+		-
+			message: "#^Method BddArkitect\\\\Extension\\\\ArkitectContextInitializer\\:\\:initializeContext\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Extension/ArkitectContextInitializer.php
+
+		-
+			message: "#^Call to an undefined method Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeParentInterface\\:\\:arrayNode\\(\\)\\.$#"
+			count: 1
+			path: src/Extension/ArkitectExtension.php
+
+		-
+			message: "#^Method BddArkitect\\\\Extension\\\\ArkitectExtension\\:\\:configure\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Extension/ArkitectExtension.php
+
+		-
+			message: "#^Method BddArkitect\\\\Extension\\\\ArkitectExtension\\:\\:initialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Extension/ArkitectExtension.php
+
+		-
+			message: "#^Method BddArkitect\\\\Extension\\\\ArkitectExtension\\:\\:load\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Extension/ArkitectExtension.php
+
+		-
+			message: "#^Property BddArkitect\\\\Tests\\\\Integration\\\\ConfigurationIntegrationTest\\:\\:\\$root is never read, only written\\.$#"
+			count: 1
+			path: tests/Integration/ConfigurationIntegrationTest.php
+
+		-
+			message: "#^Property BddArkitect\\\\Tests\\\\Integration\\\\ContextIntegrationTest\\:\\:\\$root is never read, only written\\.$#"
+			count: 1
+			path: tests/Integration/ContextIntegrationTest.php
+
+		-
+			message: "#^Property BddArkitect\\\\Tests\\\\Unit\\\\Context\\\\FileStructureContextTest\\:\\:\\$root is never read, only written\\.$#"
+			count: 1
+			path: tests/Unit/Context/FileStructureContextTest.php
+
+		-
+			message: "#^Property BddArkitect\\\\Tests\\\\Unit\\\\Context\\\\NamespaceStructureContextTest\\:\\:\\$root is never read, only written\\.$#"
+			count: 1
+			path: tests/Unit/Context/NamespaceStructureContextTest.php
+
+		-
+			message: "#^Property BddArkitect\\\\Tests\\\\Unit\\\\Context\\\\PHPClassStructureContextTest\\:\\:\\$root is never read, only written\\.$#"
+			count: 1
+			path: tests/Unit/Context/PHPClassStructureContextTest.php

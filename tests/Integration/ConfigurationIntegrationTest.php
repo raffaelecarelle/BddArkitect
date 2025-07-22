@@ -70,21 +70,21 @@ class ConfigurationIntegrationTest extends TestCase
         $this->classContext->setConfiguration($this->configuration);
     }
 
-//    public function testFileContextRespectsPathsAndExcludes(): void
-//    {
-//        // This should find only Controller files
-//        $this->fileContext->iHaveAProjectInDirectory('src');
-//        $this->fileContext->iAmCheckingFilesMatchingPattern('*.php');
-//
-//        // This should pass because Legacy files are excluded
-//        $this->fileContext->filesShouldFollowNamingPattern('*Controller.php');
-//
-//        // This should pass because we're only checking Controller and Service directories
-//        $this->fileContext->filesShouldHaveExtension('php');
-//
-//        // Add an assertion to make PHPUnit happy
-//        $this->addToAssertionCount(1);
-//    }
+    //    public function testFileContextRespectsPathsAndExcludes(): void
+    //    {
+    //        // This should find only Controller files
+    //        $this->fileContext->iHaveAProjectInDirectory('src');
+    //        $this->fileContext->iAmCheckingFilesMatchingPattern('*.php');
+    //
+    //        // This should pass because Legacy files are excluded
+    //        $this->fileContext->filesShouldFollowNamingPattern('*Controller.php');
+    //
+    //        // This should pass because we're only checking Controller and Service directories
+    //        $this->fileContext->filesShouldHaveExtension('php');
+    //
+    //        // Add an assertion to make PHPUnit happy
+    //        $this->addToAssertionCount(1);
+    //    }
 
     public function testNamespaceContextRespectsPathsAndExcludes(): void
     {

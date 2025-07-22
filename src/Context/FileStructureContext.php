@@ -17,7 +17,6 @@ use SplFileInfo;
  */
 final class FileStructureContext implements Context
 {
-    use ContextTrait;
     private string $projectRoot;
     private array $foundFiles = [];
     private array $foundDirectories = [];

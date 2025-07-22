@@ -5,16 +5,25 @@ namespace BddArkitect;
 use BddArkitect\Extension\ArkitectConfiguration;
 use PHPUnit\Framework\Assert as PhpUnitAssert;
 
-class Assert
+final class Assert
 {
     private static ?ArkitectConfiguration $configuration;
+
+    final private function __construct()
+    {
+    }
 
     public static function setConfiguration(ArkitectConfiguration $configuration): void
     {
         self::$configuration = $configuration;
     }
 
-    public static function __callStatic($name, $arguments): void
+    /**
+     * @param string $name
+     * @param array<mixed> $arguments
+     * @return void
+     */
+    public static function __callStatic(string $name, array $arguments): void
     {
         if (!method_exists(PhpUnitAssert::class, $name)) {
             return;
@@ -45,7 +54,7 @@ class Assert
      */
     protected static function shouldIgnoreError(string $error): bool
     {
-        if (!isset(static::$configuration) || !static::$configuration instanceof ArkitectConfiguration) {
+        if (!static::$configuration instanceof ArkitectConfiguration) {
             return false;
         }
 
