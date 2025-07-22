@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BddArkitect\Context;
 
 use BddArkitect\Assert;
+use BddArkitect\Extension\ArkitectConfiguration;
 use Behat\Behat\Context\Context;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -19,7 +20,7 @@ final class NamespaceStructureContext implements Context
     private string $projectRoot;
     private array $composerConfig = [];
     private array $foundClasses = [];
-    private ?\BddArkitect\Extension\ArkitectConfiguration $configuration = null;
+    private ?ArkitectConfiguration $configuration = null;
 
     public function __construct(?string $projectRoot = null)
     {
@@ -31,7 +32,7 @@ final class NamespaceStructureContext implements Context
      * Set the configuration for this context.
      * This method is called by the ArkitectContextInitializer.
      */
-    public function setConfiguration(\BddArkitect\Extension\ArkitectConfiguration $configuration): void
+    public function setConfiguration(ArkitectConfiguration $configuration): void
     {
         $this->configuration = $configuration;
         // Update the project root from the configuration if available

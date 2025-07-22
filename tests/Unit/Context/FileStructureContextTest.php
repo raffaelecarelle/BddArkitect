@@ -3,6 +3,7 @@
 namespace BddArkitect\Tests\Unit\Context;
 
 use BddArkitect\Context\FileStructureContext;
+use BddArkitect\Extension\ArkitectConfiguration;
 use PHPUnit\Framework\TestCase;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
@@ -15,6 +16,7 @@ class FileStructureContextTest extends TestCase
     private vfsStreamDirectory $root;
     private FileStructureContext $context;
     private string $projectRoot;
+    private ?ArkitectConfiguration $configuration = null;
 
     protected function setUp(): void
     {
@@ -40,7 +42,9 @@ class FileStructureContextTest extends TestCase
         ]);
 
         $this->projectRoot = vfsStream::url('testRoot');
+        $this->configuration = new ArkitectConfiguration($this->projectRoot);
         $this->context = new FileStructureContext($this->projectRoot);
+        $this->context->setConfiguration($this->configuration);
     }
 
     public function testIHaveAProjectInDirectory(): void

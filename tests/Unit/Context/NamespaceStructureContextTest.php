@@ -3,6 +3,7 @@
 namespace BddArkitect\Tests\Unit\Context;
 
 use BddArkitect\Context\NamespaceStructureContext;
+use BddArkitect\Extension\ArkitectConfiguration;
 use PHPUnit\Framework\TestCase;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
@@ -15,6 +16,7 @@ class NamespaceStructureContextTest extends TestCase
     private vfsStreamDirectory $root;
     private NamespaceStructureContext $context;
     private string $projectRoot;
+    private ?ArkitectConfiguration $configuration = null;
 
     protected function setUp(): void
     {
@@ -72,7 +74,14 @@ class NamespaceStructureContextTest extends TestCase
         ]);
 
         $this->projectRoot = vfsStream::url('testRoot');
+        $this->configuration = new ArkitectConfiguration(
+            $this->projectRoot,
+            ['src/Controller', 'src/Service', 'tests'],
+            ['src/Legacy', 'vendor'],
+            []
+        );
         $this->context = new NamespaceStructureContext($this->projectRoot);
+        $this->context->setConfiguration($this->configuration);
     }
 
     public function testIHaveAPsr4CompliantProject(): void

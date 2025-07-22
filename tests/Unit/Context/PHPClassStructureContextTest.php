@@ -3,6 +3,8 @@
 namespace BddArkitect\Tests\Unit\Context;
 
 use BddArkitect\Context\PHPClassStructureContext;
+use BddArkitect\Extension\ArkitectConfiguration;
+use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\TestCase;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
@@ -15,6 +17,7 @@ class PHPClassStructureContextTest extends TestCase
     private vfsStreamDirectory $root;
     private PHPClassStructureContext $context;
     private string $projectRoot;
+    private ArkitectConfiguration $configuration;
 
     protected function setUp(): void
     {
@@ -200,8 +203,11 @@ abstract class AbstractEntity
             ],
         ]);
 
+        // Create configuration with paths, excludes, and ignore_errors
         $this->projectRoot = vfsStream::url('testRoot');
+        $this->configuration = new ArkitectConfiguration($this->projectRoot);
         $this->context = new PHPClassStructureContext($this->projectRoot);
+        $this->context->setConfiguration($this->configuration);
     }
 
     public function testIHaveAPhpClassMatchingPattern(): void
@@ -241,7 +247,7 @@ abstract class AbstractEntity
 
         // Test that the method throws an exception for non-final classes
         $this->context->iAmAnalyzingTheClass('App\Repository\UserRepository');
-        $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
+        $this->expectException(AssertionFailedError::class);
         $this->context->theClassShouldBeFinal();
     }
 
@@ -255,7 +261,7 @@ abstract class AbstractEntity
 
         // Test that the method throws an exception for final classes
         $this->context->iAmAnalyzingTheClass('App\Controller\UserController');
-        $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
+        $this->expectException(AssertionFailedError::class);
         $this->context->theClassShouldNotBeFinal();
     }
 
