@@ -4,7 +4,7 @@ Feature: File Structure Validation Tests
   So that I can maintain consistent file organization
 
   Background:
-    Given I have a project in directory "./tests/Functional/fixtures"
+    Given I have a project in directory "src"
 
   Scenario: PHP files should follow naming conventions
     Given I am checking files matching pattern "*.php"
@@ -21,7 +21,7 @@ Feature: File Structure Validation Tests
 
   Scenario: Source directory should contain limited file types
     Given I am checking files matching pattern "*"
-    And I have a project in directory "./tests/Functional/fixtures/src"
+    And I have a project in directory "src"
     When I scan the project structure
     Then files should have extension "php"
     And files should not have extension "txt"

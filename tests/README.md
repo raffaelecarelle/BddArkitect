@@ -34,7 +34,7 @@ vendor/bin/phpunit tests/Integration
 To run the functional tests, use Behat:
 
 ```bash
-vendor/bin/behat tests/Functional/features/file-structure-test.feature
+vendor/bin/behat --config=tests/Functional/fixtures/behat.yml
 ```
 
 ## Test Dependencies

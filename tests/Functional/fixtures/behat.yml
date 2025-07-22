@@ -1,0 +1,15 @@
+default:
+    suites:
+        default:
+            paths:
+                - tests/Functional/fixtures/features
+            contexts:
+                - BddArkitect\Context\FileStructureContext: ~
+                - BddArkitect\Context\NamespaceStructureContext: ~
+                - BddArkitect\Context\PHPClassStructureContext: ~
+
+    extensions:
+        BddArkitect\Extension\ArkitectExtension:
+            project_root: "%paths.base%"
+            paths:
+                - src
