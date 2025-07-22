@@ -4,11 +4,10 @@ Feature: File Structure Validation Tests
   So that I can maintain consistent file organization
 
   Background:
-    Given I have a project in directory "src"
+    Given I have a project in directory "."
 
   Scenario: PHP files should follow naming conventions
     Given I am checking files matching pattern "*.php"
-    When I scan the project structure
     Then files should follow naming pattern "*Test.php"
     And files should have extension "php"
 
