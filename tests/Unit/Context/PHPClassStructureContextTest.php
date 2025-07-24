@@ -25,12 +25,12 @@ class PHPClassStructureContextTest extends TestCase
         $this->root = vfsStream::setup('testRoot', null, [
             'src' => [
                 'Controller' => [
-                    'UserController.php' => '<?php
+                    'UserServiceController.php' => '<?php
 namespace App\Controller;
 
 use App\Contracts\UserRepositoryInterface;
 
-final class UserController
+final class UserServiceController
 {
     private $userRepository;
 
@@ -222,7 +222,7 @@ abstract class AbstractEntity
     public function testIAmAnalyzingTheClass(): void
     {
         // Test that the method correctly sets the class to analyze
-        $this->context->iAmAnalyzingTheClass('App\Controller\UserController');
+        $this->context->iAmAnalyzingTheClass('App\Controller\UserServiceController');
 
         // This method doesn't return anything, so we're just testing that it doesn't throw an exception
         $this->addToAssertionCount(1);
@@ -240,7 +240,7 @@ abstract class AbstractEntity
     public function testTheClassShouldBeFinal(): void
     {
         // Set up the context
-        $this->context->iAmAnalyzingTheClass('App\Controller\UserController');
+        $this->context->iAmAnalyzingTheClass('App\Controller\UserServiceController');
 
         // Test that the method correctly validates that a class is final
         $this->context->theClassShouldBeFinal();
@@ -260,7 +260,7 @@ abstract class AbstractEntity
         $this->context->theClassShouldNotBeFinal();
 
         // Test that the method throws an exception for final classes
-        $this->context->iAmAnalyzingTheClass('App\Controller\UserController');
+        $this->context->iAmAnalyzingTheClass('App\Controller\UserServiceController');
         $this->expectException(AssertionFailedError::class);
         $this->context->theClassShouldNotBeFinal();
     }
@@ -274,7 +274,7 @@ abstract class AbstractEntity
         $this->context->theClassShouldBeInterface();
 
         // Test that the method throws an exception for non-interface classes
-        $this->context->iAmAnalyzingTheClass('App\Controller\UserController');
+        $this->context->iAmAnalyzingTheClass('App\Controller\UserServiceController');
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->theClassShouldBeInterface();
     }
@@ -282,7 +282,7 @@ abstract class AbstractEntity
     public function testTheClassShouldNotBeInterface(): void
     {
         // Set up the context
-        $this->context->iAmAnalyzingTheClass('App\Controller\UserController');
+        $this->context->iAmAnalyzingTheClass('App\Controller\UserServiceController');
 
         // Test that the method correctly validates that a class is not an interface
         $this->context->theClassShouldNotBeInterface();
@@ -302,7 +302,7 @@ abstract class AbstractEntity
         $this->context->theClassShouldBeAbstract();
 
         // Test that the method throws an exception for non-abstract classes
-        $this->context->iAmAnalyzingTheClass('App\Controller\UserController');
+        $this->context->iAmAnalyzingTheClass('App\Controller\UserServiceController');
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->theClassShouldBeAbstract();
     }
@@ -310,7 +310,7 @@ abstract class AbstractEntity
     public function testTheClassShouldNotBeAbstract(): void
     {
         // Set up the context
-        $this->context->iAmAnalyzingTheClass('App\Controller\UserController');
+        $this->context->iAmAnalyzingTheClass('App\Controller\UserServiceController');
 
         // Test that the method correctly validates that a class is not abstract
         $this->context->theClassShouldNotBeAbstract();
@@ -330,7 +330,7 @@ abstract class AbstractEntity
         $this->context->theClassShouldImplement('App\Contracts\ServiceInterface');
 
         // Test that the method throws an exception for classes that don't implement the interface
-        $this->context->iAmAnalyzingTheClass('App\Controller\UserController');
+        $this->context->iAmAnalyzingTheClass('App\Controller\UserServiceController');
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->theClassShouldImplement('App\Contracts\ServiceInterface');
     }
@@ -344,7 +344,7 @@ abstract class AbstractEntity
         $this->context->theClassShouldExtend('App\Repository\BaseRepository');
 
         // Test that the method throws an exception for classes that don't extend the class
-        $this->context->iAmAnalyzingTheClass('App\Controller\UserController');
+        $this->context->iAmAnalyzingTheClass('App\Controller\UserServiceController');
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->theClassShouldExtend('App\Repository\BaseRepository');
     }
@@ -352,7 +352,7 @@ abstract class AbstractEntity
     public function testMethodsShouldHaveMaximumArguments(): void
     {
         // Set up the context
-        $this->context->iAmAnalyzingTheClass('App\Controller\UserController');
+        $this->context->iAmAnalyzingTheClass('App\Controller\UserServiceController');
         $this->context->iInspectTheClassMethods();
 
         // Test that the method correctly validates the maximum number of arguments
@@ -375,7 +375,7 @@ abstract class AbstractEntity
         $this->context->theClassShouldHaveAttribute('AsEventListener');
 
         // Test that the method throws an exception for classes without the attribute
-        $this->context->iAmAnalyzingTheClass('App\Controller\UserController');
+        $this->context->iAmAnalyzingTheClass('App\Controller\UserServiceController');
         $this->context->iExamineTheClassAttributes();
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->context->theClassShouldHaveAttribute('AsEventListener');
@@ -384,7 +384,7 @@ abstract class AbstractEntity
     public function testTheClassShouldNotHaveAttribute(): void
     {
         // Set up the context
-        $this->context->iAmAnalyzingTheClass('App\Controller\UserController');
+        $this->context->iAmAnalyzingTheClass('App\Controller\UserServiceController');
         $this->context->iExamineTheClassAttributes();
 
         // Test that the method correctly validates that a class doesn't have an attribute

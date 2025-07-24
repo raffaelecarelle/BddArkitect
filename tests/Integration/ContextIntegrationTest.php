@@ -5,6 +5,7 @@ namespace BddArkitect\Tests\Integration;
 use BddArkitect\Context\FileStructureContext;
 use BddArkitect\Context\NamespaceStructureContext;
 use BddArkitect\Context\PHPClassStructureContext;
+use BddArkitect\Extension\ArkitectConfiguration;
 use Composer\Autoload\ClassLoader;
 use PHPUnit\Framework\TestCase;
 use org\bovigo\vfs\vfsStream;
@@ -20,6 +21,7 @@ class ContextIntegrationTest extends TestCase
     private FileStructureContext $fileContext;
     private NamespaceStructureContext $namespaceContext;
     private PHPClassStructureContext $classContext;
+    private ArkitectConfiguration $configuration;
 
     protected function setUp(): void
     {
@@ -27,12 +29,12 @@ class ContextIntegrationTest extends TestCase
         $this->root = vfsStream::setup('testRoot', null, [
             'src' => [
                 'Controller' => [
-                    'UserController.php' => '<?php
+                    'UserEntityController.php' => '<?php
 namespace App\Controller;
 
 use App\Contracts\UserRepositoryInterface;
 
-final class UserController
+final class UserEntityController
 {
     private $userRepository;
 
@@ -153,9 +155,13 @@ interface UserRepositoryInterface
         ]);
 
         $this->projectRoot = vfsStream::url('testRoot');
+        $this->configuration = new ArkitectConfiguration($this->projectRoot);
         $this->fileContext = new FileStructureContext($this->projectRoot);
+        $this->fileContext->setConfiguration($this->configuration);
         $this->namespaceContext = new NamespaceStructureContext($this->projectRoot);
+        $this->namespaceContext->setConfiguration($this->configuration);
         $this->classContext = new PHPClassStructureContext($this->projectRoot);
+        $this->classContext->setConfiguration($this->configuration);
     }
 
     /**
@@ -178,7 +184,7 @@ interface UserRepositoryInterface
 
         // Class structure validation
         $this->classContext->iHaveAPhpClassMatchingPattern('*Controller');
-        $this->classContext->iAmAnalyzingTheClass('App\Controller\UserController');
+        $this->classContext->iAmAnalyzingTheClass('App\Controller\UserEntityController');
         $this->classContext->theClassShouldBeFinal();
         $this->classContext->theClassShouldNotBeAbstract();
         $this->classContext->theClassShouldNotBeInterface();
